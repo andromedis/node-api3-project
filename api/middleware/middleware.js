@@ -1,17 +1,53 @@
+// Imports
+const Users = require('../users/users-model')
+
+
+// Custom middleware functions
 function logger(req, res, next) {
-  // DO YOUR MAGIC
+    console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}`)
+    next()
 }
 
-function validateUserId(req, res, next) {
-  // DO YOUR MAGIC
+async function validateUserId(req, res, next) {
+    try {
+        const user = await Users.getById(req.params.id)
+        if (user) {
+            req.user = user
+            next()
+        }
+        else {
+            res.status(404).json({ message: 'user not found' })
+        }
+    }
+    catch (err) {
+        console.error(err)
+        res.status(500).json({ message: err.message })
+    }
 }
 
 function validateUser(req, res, next) {
-  // DO YOUR MAGIC
+    if (req.body.name) {
+        next()
+    }
+    else {
+        res.status(400).json({ message: 'missing required name field' })
+    }
 }
 
 function validatePost(req, res, next) {
-  // DO YOUR MAGIC
+    if (req.body.text) {
+        next()
+    }
+    else {
+        res.status(400).json({ message: 'missing required text field' })
+    }
 }
 
-// do not forget to expose these functions to other modules
+
+// Exports
+module.exports = {
+    logger,
+    validateUserId,
+    validateUser,
+    validatePost
+}
