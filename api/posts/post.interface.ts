@@ -2,7 +2,7 @@ import { User } from '../users/user.interface';
 
 export interface BasePost {
     text: string;
-    user_id: User['id'];
+    user_id: User['id'];        // Not returned from user-model getUserPosts()
 }
 
 export interface Post extends BasePost {
