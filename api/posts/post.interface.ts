@@ -7,5 +7,5 @@ export interface BasePost {
 
 export interface Post extends BasePost {
     id: number;
-    postedBy: User['name'];
+    postedBy?: User['name'];    // Only when returned from user-model getUserPosts()
 }
