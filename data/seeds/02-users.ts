@@ -1,4 +1,7 @@
-const users = [
+import { Knex } from 'knex';
+import { BaseUser } from '../../api/users/user.interface';
+
+const users: BaseUser[] = [
   { name: 'Frodo Baggins' },
   { name: 'Samwise Gamgee' },
   { name: 'Meriadoc Brandybuck' },
@@ -12,6 +15,6 @@ const users = [
 
 exports.users = users;
 
-exports.seed = function (knex) {
+exports.seed = function (knex: Knex) {
   return knex('users').insert(users);
 };
