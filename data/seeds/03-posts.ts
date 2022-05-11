@@ -1,4 +1,7 @@
-const posts = [
+import { Knex } from 'knex';
+import { BasePost } from '../../api/posts/post.interface';
+
+const posts: BasePost[] = [
   {
     user_id: 1,
     text: 'I wish the ring had never come to me. I wish none of this had happened.',
@@ -155,6 +158,6 @@ const posts = [
 
 exports.posts = posts;
 
-exports.seed = function (knex) {
+exports.seed = function (knex: Knex) {
   return knex('posts').insert(posts);
 };
