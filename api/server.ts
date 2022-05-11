@@ -1,9 +1,9 @@
 // Imports
-const express = require('express');
-const userRouter = require('./users/users-router')
-const mw = require('./middleware/middleware')
+import express, { Express, Request, Response } from 'express';
+import { router as userRouter } from './users/users-router';
+import * as mw from './middleware/middleware';
 
-const server = express();
+export const server = express()
 
 // remember express by default cannot parse JSON in request bodies
 
@@ -14,8 +14,6 @@ server.use(mw.logger)
 
 server.use('/api/users', userRouter)
 
-server.get('/', (req, res) => {
+server.get('/', (req: Request, res: Response) => {
     res.send(`<h2>Let's write some middleware!</h2>`);
 });
-
-module.exports = server;

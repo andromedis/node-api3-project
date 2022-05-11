@@ -4,8 +4,8 @@
     "scripts": {
         "start": "node index.js",
         "server": "nodemon index.js",
-        "dev": "ts-node-dev --respawn --pretty --transpile-only index.js",
-        "ts-start": "ts-node index.js",
+        "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts",
+        "ts-start": "ts-node index.ts",
         "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent",
         "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
     },
