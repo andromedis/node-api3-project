@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', mw.validateUserId, (req, res) => {
     // RETURN THE USER OBJECT
     // this needs a middleware to verify user id
-    res.status(200).json(req.user)
+    res.status(200).json(res.locals.user)
 });
 
 router.post('/', mw.validateUser, async (req, res) => {
@@ -66,7 +66,7 @@ router.delete('/:id', mw.validateUserId, async (req, res) => {
     try {
         const deleted = await Users.remove(req.params.id)
         if (deleted)
-            res.status(200).json(req.user)
+            res.status(200).json(res.locals.user)
         else
             throw new Error(`User id=${req.params.id} could not be removed`)
     }
