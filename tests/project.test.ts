@@ -1,11 +1,11 @@
-const db = require('./data/db-config')
+const db = require('../data/db-config')
 import request, { Response } from 'supertest';
-import { server } from './api/server';
-import { BaseUser, User } from './api/users/user.interface';
-import { BasePost, Post } from './api/posts/post.interface';
+import { server } from '../api/server';
+import { BaseUser, User } from '../api/users/user.interface';
+import { BasePost, Post } from '../api/posts/post.interface';
 
-const { users: initialUsers }: {users: BaseUser[]} = require('./data/seeds/02-users');
-const { posts: initialPosts }: {posts: BasePost[]} = require('./data/seeds/03-posts');
+const { users: initialUsers }: {users: BaseUser[]} = require('../data/seeds/02-users');
+const { posts: initialPosts }: {posts: BasePost[]} = require('../data/seeds/03-posts');
 
 beforeAll(async () => {
   await db.migrate.rollback()
